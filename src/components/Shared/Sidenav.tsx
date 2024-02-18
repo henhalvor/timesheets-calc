@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { IoMenu } from "react-icons/io5";
 
 export default function Sidenav() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
@@ -12,7 +12,7 @@ export default function Sidenav() {
 
   return (
     <>
-      <IoMenu size={40} onClick={toggleCollapse} className="absolute top-17 left-2 opacity-70 hover:cursor-pointer hover:opacity-100" />
+      <IoMenu size={40} onClick={toggleCollapse} className="absolute top-17 left-2 opacity-70 hover:cursor-pointer hover:opacity-100 hover:scale-110" />
       {isCollapsed ? null : (
         <nav
           className={`w-52 flex flex-col p-4 pt-10 bg-gray-500 border-solid border-black border-[1px]`}
