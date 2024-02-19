@@ -1,4 +1,5 @@
 import { ImageForm } from "@/components/UI/ImageForm";
+import UsersImages from "@/components/UsersImages";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default async function Home() {
@@ -9,9 +10,10 @@ export default async function Home() {
     console.log(user.id);
   }
   return (
-    <main className="flex flex-1 items-center justify-center">
+    <main className="flex flex-col flex-1 items-center justify-center">
       <h1>Index</h1>
       <ImageForm />
+      <UsersImages />
     </main>
   );
 }
