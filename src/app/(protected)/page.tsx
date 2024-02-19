@@ -1,8 +1,17 @@
+import { ImageForm } from "@/components/UI/ImageForm";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-export default function Home() {
+export default async function Home() {
+  const { getUser } = getKindeServerSession();
+
+  const user = await getUser();
+  if (user) {
+    console.log(user.id);
+  }
   return (
     <main className="flex flex-1 items-center justify-center">
       <h1>Index</h1>
+      <ImageForm />
     </main>
   );
 }
