@@ -1,5 +1,10 @@
 # Info
 
+## TOOLING / SERVICES
+Vercel Blob storagee
+Vercel PorstgresSql DB
+Kinde Auth
+
 ## Icons
 https://react-icons.github.io/react-icons/
 
