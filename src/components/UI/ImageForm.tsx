@@ -10,7 +10,7 @@ export async function ImageForm() {
         className="flex flex-col gap-5 justify-center items-center"
       >
         <label className=" text-black flex items-center gap-2 border-solid border-gray-500 border-[1px] rounded-md p-2 hover:border-black hover:font-semibold hover:scale-105">
-          <input type="file" required className=" hidden" />
+          <input type="file" id="image" name="image" required className=" hidden" />
           <LuImagePlus size={24} className="" />
           Upload Image
         </label>
