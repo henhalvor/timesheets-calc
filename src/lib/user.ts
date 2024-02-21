@@ -10,7 +10,7 @@ export async function getUserId() {
     } else {
       throw new Error("User not found");
     }
-  } catch (error) {
-    throw error;
+  } catch (error: any) {
+    console.log(error.message);
   }
 }
