@@ -1,5 +1,8 @@
 import prisma from "@/lib/prisma";
 import { getUserId } from "@/lib/user";
+import { del } from "@vercel/blob";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function getAllUserImages() {
   try {
@@ -10,6 +13,7 @@ export async function getAllUserImages() {
       select: {
         imageUrl: true,
         imageWeekNumber: true,
+        id: true,
       },
     });
 
@@ -28,6 +32,7 @@ export async function getImageByWeekNumber(weekNumber: number) {
       select: {
         imageUrl: true,
         imageDownloadUrl: true,
+        id: true,
       },
     });
 
@@ -36,3 +41,24 @@ export async function getImageByWeekNumber(weekNumber: number) {
     throw error;
   }
 }
+
+export async function getImageById(id: string) {
+  try {
+    const userId = await getUserId();
+
+    const image = await prisma.imageMetadata.findFirst({
+      where: { userId: userId, id: id },
+      select: {
+        imageUrl: true,
+        imageDownloadUrl: true,
+        id: true,
+      },
+    });
+
+    return image;
+  } catch (error) {
+    throw error;
+  }
+}
+
+
