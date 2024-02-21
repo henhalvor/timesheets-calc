@@ -12,8 +12,8 @@ export default function RootLayout({
     <div id="page-wrapper">
       <Navbar />
       <div className="flex h-full w-full">
-        <Sidenav />
-        <main className="flex flex-1 bg-red-600">{children}</main>
+        {/* <Sidenav /> */}
+        <main className="flex flex-1 bg-white">{children}</main>
       </div>
       <Footer />
     </div>

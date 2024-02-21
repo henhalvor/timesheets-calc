@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState } from "react";
 import { IoMenu } from "react-icons/io5";
 
@@ -14,9 +15,15 @@ export default function Navbar() {
       <h1 className="font-bold text-2xl p-4">TimeSheetsCalc</h1>
       <div className="relative h-full flex items-center mr-5">
         <ul className="hidden md:flex items-center gap-6">
-          <li>Nav item 1</li>
-          <li>Nav item 2</li>
-          <li>Nav item 3</li>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/timesheets">Timesheets</Link>
+          </li>
+          <li>
+            <Link href="/timesheets/upload">Upload</Link>
+          </li>
           <li>Nav item 4</li>
         </ul>
         <IoMenu
@@ -27,9 +34,15 @@ export default function Navbar() {
         {isCollapsed ? null : (
           <div className="md:hidden absolute top-full right-0 flex flex-col justify-center w-[8rem] p-2 bg-gray-500 border-solid border-black border-[1px]">
             <ul>
-              <li>Nav item 1</li>
-              <li>Nav item 2</li>
-              <li>Nav item 3</li>
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href="/timesheets">Timesheets</Link>
+              </li>
+              <li>
+                <Link href="/timesheets/upload">Upload</Link>
+              </li>
               <li>Nav item 4</li>
             </ul>
           </div>
