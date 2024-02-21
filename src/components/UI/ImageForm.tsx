@@ -9,13 +9,13 @@ export async function ImageForm() {
         action={uploadImage}
         className="flex flex-col gap-5 justify-center items-center"
       >
-        <label className="flex items-center gap-2 border-solid border-gray-500 border-[1px] rounded-md p-2 hover:border-black hover:font-semibold hover:scale-105">
+        <label className=" text-black flex items-center gap-2 border-solid border-gray-500 border-[1px] rounded-md p-2 hover:border-black hover:font-semibold hover:scale-105">
           <input type="file" required className=" hidden" />
-          <LuImagePlus size={24} />
+          <LuImagePlus size={24} className="" />
           Upload Image
         </label>
         <div className="flex flex-col gap-1 items-center">
-          <label htmlFor="week-number" className="">
+          <label htmlFor="week-number" className="text-black">
             Week Number
           </label>
           <input
@@ -23,11 +23,11 @@ export async function ImageForm() {
             id="week-number"
             name="week-number"
             required
-            className="border-solid border-gray-500 hover:border-black border-[1px] rounded-md p-2 hover:placeholder:text-black hover:scale-105"
+            className=" text-black border-solid border-gray-500 hover:border-black border-[1px] rounded-md p-2 hover:placeholder:text-black hover:scale-105"
             placeholder="Enter week number..."
           />
         </div>
-        <button className="flex gap-2 items-center border-solid border-gray-500 hover:border-black hover:font-bold hover:scale-105 border-[1px] rounded-md p-2 font-semibold">
+        <button className=" text-black flex gap-2 items-center border-solid border-gray-500 hover:border-black hover:font-bold hover:scale-105 border-[1px] rounded-md p-2 font-semibold">
           <IoCloudUploadOutline size={24} />
           Upload
         </button>

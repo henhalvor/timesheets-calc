@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             readOnly
             className="hidden"
           />
-          <button className="border-solid border-gray-500 border-[1px] rounded-md p-2 hover:border-black hover:font-semibold hover:scale-105 m-2">
+          <button className=" text-black border-solid border-gray-500 border-[1px] rounded-md p-2 hover:border-black hover:font-semibold hover:scale-105 m-2">
             Delete Image
           </button>
         </form>
