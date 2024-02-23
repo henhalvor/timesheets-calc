@@ -11,9 +11,12 @@ export async function getAllUserImages() {
     const images = await prisma.imageMetadata.findMany({
       where: { userId: userId },
       select: {
+        userId: true,
         imageUrl: true,
-        imageWeekNumber: true,
+        imageDownloadUrl: true,
         id: true,
+        imageWeekNumber: true,
+        uploadDate: true,
       },
     });
 
@@ -30,9 +33,12 @@ export async function getImageByWeekNumber(weekNumber: number) {
     const image = await prisma.imageMetadata.findFirst({
       where: { userId: userId, imageWeekNumber: weekNumber },
       select: {
+        userId: true,
         imageUrl: true,
         imageDownloadUrl: true,
         id: true,
+        imageWeekNumber: true,
+        uploadDate: true,
       },
     });
 
