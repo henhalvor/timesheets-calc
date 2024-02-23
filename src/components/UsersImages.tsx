@@ -7,12 +7,9 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { ImageType } from "@/types";
 
-type ImageType = {
-  id: string;
-  imageUrl: string;
-  imageWeekNumber: number;
-};
+
 
 interface UsersImagesProps {
   images: ImageType[] | null;

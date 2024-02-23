@@ -4,5 +4,5 @@ export type ImageType = {
   imageUrl:  string
   imageDownloadUrl: string
   imageWeekNumber: number
-  uploadDate: number
+  uploadDate: bigint
 };

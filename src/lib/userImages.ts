@@ -49,9 +49,12 @@ export async function getImageById(id: string) {
     const image = await prisma.imageMetadata.findFirst({
       where: { userId: userId, id: id },
       select: {
+        userId: true,
         imageUrl: true,
         imageDownloadUrl: true,
         id: true,
+        imageWeekNumber: true,
+        uploadDate: true,
       },
     });
 

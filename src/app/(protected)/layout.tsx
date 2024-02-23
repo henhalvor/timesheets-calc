@@ -13,7 +13,7 @@ export default function RootLayout({
       <Navbar />
       <div className="flex h-full w-full">
         {/* <Sidenav /> */}
-        <main className="flex flex-1 bg-white">{children}</main>
+        <main className="flex justify-center items-center flex-1 bg-white">{children}</main>
       </div>
       <Footer />
     </div>
