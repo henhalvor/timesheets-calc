@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
-import { IoMenu } from "react-icons/io5";
+import { IoMenu, IoClose } from "react-icons/io5";
 
 export default function Navbar() {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -10,6 +10,16 @@ export default function Navbar() {
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
+
+  function handleOpenMenuClick() {
+    document.addEventListener("click", handleClickOutside);
+  }
+
+  function handleClickOutside(event: MouseEvent) {
+    setIsCollapsed(true);
+    document.removeEventListener("click", handleClickOutside);
+  }
+
   return (
     <nav className="flex justify-between bg-gray-500">
       <h1 className="font-bold text-2xl p-4">TimeSheetsCalc</h1>
@@ -26,24 +36,35 @@ export default function Navbar() {
           </li>
           <li>Nav item 4</li>
         </ul>
-        <IoMenu
-          size={40}
-          onClick={toggleCollapse}
-          className="md:hidden opacity-70 hover:cursor-pointer hover:opacity-100 hover:scale-110"
-        />
+        {isCollapsed ? (
+          <IoMenu
+            size={40}
+            onClick={() => {
+              toggleCollapse()
+              handleOpenMenuClick()
+            }}
+            className="md:hidden opacity-70 hover:cursor-pointer hover:opacity-100 hover:scale-110"
+          />
+        ) : (
+          <IoClose
+            size={40}
+            onClick={toggleCollapse}
+            className="md:hidden opacity-70 hover:cursor-pointer hover:opacity-100 hover:scale-110"
+          />
+        )}
         {isCollapsed ? null : (
-          <div className="md:hidden absolute top-full right-0 flex flex-col justify-center w-[8rem] p-2 bg-gray-500 border-solid border-black border-[1px]">
-            <ul>
-              <li>
+          <div className="md:hidden absolute top-full right-0 mt-1 flex flex-col justify-center w-[8rem] p-4 bg-gray-500 border-solid border-gray-500 border-[1px] rounded-md z-50">
+            <ul className="flex flex-col gap-2">
+              <li className="hover:scale-105 font-semibold">
                 <Link href="/">Home</Link>
               </li>
-              <li>
+              <li className="hover:scale-105 font-semibold">
                 <Link href="/timesheets">Timesheets</Link>
               </li>
-              <li>
+              <li className="hover:scale-105 font-semibold">
                 <Link href="/timesheets/upload">Upload</Link>
               </li>
-              <li>Nav item 4</li>
+              <li className="hover:scale-105 font-semibold">Nav item 4</li>
             </ul>
           </div>
         )}
