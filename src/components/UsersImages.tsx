@@ -23,11 +23,11 @@ export default function UsersImages({ images }: UsersImagesProps) {
   const router = useRouter();
 
   return (
-    <div className="image-gallery flex gap-2 m-4 p-4 bg-gray-500">
+    <div className="image-gallery flex flex-col sm:flex-row sm:flex-wrap gap-3 m-4 p-4">
       {images.map((image, index) => (
         <div
           key={index}
-          className="flex flex-col gap-2 items-center hover:cursor-pointer hover:scale-105"
+          className="flex flex-col gap-2 items-center hover:cursor-pointer hover:scale-105 rounded-md bg-gray-500 border-solid border-gray-500 border-[1px] p-1"
           onClick={() => {
             router.push(`/timesheets/${image.id}`);
           }}
