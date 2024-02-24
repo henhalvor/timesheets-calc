@@ -13,7 +13,7 @@ export default function ImageIndex({ image }: ImageIndexProps) {
 
   const uploadDate = new Date(Number(BigInt(image.uploadDate)));
   return (
-    <div className="h-full w-full flex flex-1 flex-col justify-between items-center border-solid border-gray-500 border-[1px] rounded-md p-2">
+    <div className="h-[330px] w-full flex flex-1 flex-col justify-between items-center border-solid border-gray-500 border-[1px] rounded-md p-2">
       <div className="flex flex-col gap-2">
         <h2 className="text-2xl font-bold">Week {image.imageWeekNumber}</h2>
         <p className="mb-8">

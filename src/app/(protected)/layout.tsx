@@ -8,14 +8,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    /* Body needed an extra wrapper inside to make elements expand to full height and width */
-    <div id="page-wrapper">
+    <>
       <Navbar />
-      <div className="flex h-full w-full">
-        {/* <Sidenav /> */}
-        <main className="flex justify-center items-center flex-1 bg-white">{children}</main>
-      </div>
+
+      <main className="flex-1 flex justify-center items-center bg-white">
+        {children}
+      </main>
+
       <Footer />
-    </div>
+    </>
   );
 }

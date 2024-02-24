@@ -14,7 +14,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="h-[330px] w-auto flex flex-col md:flex-row gap-2 items-center justify-center1">
+    <div className=" w-auto flex flex-col md:flex-row gap-2 items-center justify-center m-8">
       <div className="border-solid border-gray-500 border-[1px] rounded-md p-1">
         <Image
           className="h-auto w-60"
