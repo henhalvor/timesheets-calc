@@ -15,13 +15,13 @@ async function uploadTimesheetToDb(
   const imageDownloadUrl = blob.downloadUrl;
   const uploadDate = Date.now();
   const weekNumber = Number(formData.get("week-number"));
-  const regularHours = 12
-  const accruedHours = 12
-  const usedAccruedHours = 12
-  const overtimeHours = 12
-  const travelDistanceKM = 12
-  const extraToolCompensation = 12
-  const extraTransportationCompensation = 12
+  const regularHours = Number(formData.get("hours"));
+  const accruedHours = Number(formData.get("accrued-hours")) || 0;
+  const usedAccruedHours = Number(formData.get("used-accrued-hours")) || 0;
+  const overtimeHours = Number(formData.get("overtime-hours")) || 0;
+  const travelDistanceKM = Number(formData.get("travel-distance")) || 0;
+  const extraToolCompensation = Number(formData.get("extra-tool-compensation")) || 0;
+  const extraTransportationCompensation = Number(formData.get("extra-transportation-compensation")) || 0;
 
   if (userId && imageUrl && imageDownloadUrl && uploadDate && weekNumber) {
     const newEntry = await prisma.timesheet.create({
