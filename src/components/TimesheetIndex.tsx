@@ -58,7 +58,7 @@ export default function TimesheetIndex({ timesheet }: TimesheetIndexProps) {
             className="hidden"
           />
           <button className=" text-white rounded-md p-2  hover:font-semibold hover:scale-105 m-2 bg-red-700">
-            Delete Image
+            Delete Timesheet
           </button>
         </form>
       </div>
