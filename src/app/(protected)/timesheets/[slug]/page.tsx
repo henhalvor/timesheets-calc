@@ -1,12 +1,11 @@
-import { getImageById, getImageByWeekNumber } from "@/lib/userImages";
+import { getTimesheetById } from "@/lib/userImages";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
-import { deleteImageById } from "@/actions/delete";
 import ImageIndex from "@/components/ImageIndex";
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const image = await getImageById(params.slug);
+  const image = await getTimesheetById(params.slug);
 
   // Check if the image exists
   if (!image) {

@@ -3,6 +3,13 @@ export type ImageType = {
   userId:   string
   imageUrl:  string
   imageDownloadUrl: string
-  imageWeekNumber: number
+  weekNumber: number
   uploadDate: bigint
+  regularHours: number
+  accruedHours: number
+  usedAccruedHours: number
+  overtimeHours: number
+  travelDistanceKM: number
+  extraToolCompensation: number
+  extraTransportationCompensation: number
 };

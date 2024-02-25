@@ -1,4 +1,4 @@
-import { uploadImage } from "@/actions/upload";
+import { uploadTimesheet } from "@/actions/upload";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { LuImagePlus } from "react-icons/lu";
 
@@ -6,7 +6,7 @@ export async function ImageForm() {
   return (
     <div className=" border-solid border-gray-500 border-[1px] rounded-md p-4">
       <form
-        action={uploadImage}
+        action={uploadTimesheet}
         className="flex flex-col gap-5 justify-center items-center"
       >
         <label className=" text-black flex items-center gap-2 border-solid border-gray-500 border-[1px] rounded-md p-2 hover:border-black hover:font-semibold hover:scale-105">

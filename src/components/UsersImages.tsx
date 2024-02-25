@@ -1,8 +1,5 @@
 "use client";
 
-import { getAllUserImages } from "@/lib/userImages";
-import prisma from "@/lib/prisma";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -32,7 +29,7 @@ export default function UsersImages({ images }: UsersImagesProps) {
             router.push(`/timesheets/${image.id}`);
           }}
         >
-          <p>Week {image.imageWeekNumber}</p>
+          <p>Week {image.weekNumber}</p>
           <Image
             className="h-auto w-60"
             key={index}

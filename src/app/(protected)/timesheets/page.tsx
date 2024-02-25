@@ -1,9 +1,9 @@
 import UsersImages from "@/components/UsersImages";
-import { getAllUserImages } from "@/lib/userImages";
+import { getAllUserTimesheets } from "@/lib/userImages";
 import React from "react";
 
 export default async function Page() {
-  const images = await getAllUserImages();
+  const images = await getAllUserTimesheets();
   return (
     <div>
       <UsersImages images={images}/>

@@ -4,67 +4,88 @@ import { del } from "@vercel/blob";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function getAllUserImages() {
+export async function getAllUserTimesheets() {
   try {
     const userId = await getUserId();
 
-    const images = await prisma.imageMetadata.findMany({
+    const timesheets = await prisma.timesheet.findMany({
       where: { userId: userId },
       select: {
+        id: true,
         userId: true,
         imageUrl: true,
         imageDownloadUrl: true,
-        id: true,
-        imageWeekNumber: true,
+        weekNumber: true,
         uploadDate: true,
+        regularHours: true,
+        accruedHours: true,
+        usedAccruedHours: true,
+        overtimeHours: true,
+        travelDistanceKM: true,
+        extraToolCompensation: true,
+        extraTransportationCompensation: true,
       },
     });
 
-    return images;
+    return timesheets;
   } catch (error) {
     throw error;
   }
 }
 
-export async function getImageByWeekNumber(weekNumber: number) {
+export async function getTimesheetByWeekNumber(weekNumber: number) {
   try {
     const userId = await getUserId();
 
-    const image = await prisma.imageMetadata.findFirst({
-      where: { userId: userId, imageWeekNumber: weekNumber },
+    const timesheet = await prisma.timesheet.findFirst({
+      where: { userId: userId, weekNumber: weekNumber },
       select: {
+        id: true,
         userId: true,
         imageUrl: true,
         imageDownloadUrl: true,
-        id: true,
-        imageWeekNumber: true,
+        weekNumber: true,
         uploadDate: true,
+        regularHours: true,
+        accruedHours: true,
+        usedAccruedHours: true,
+        overtimeHours: true,
+        travelDistanceKM: true,
+        extraToolCompensation: true,
+        extraTransportationCompensation: true,
       },
     });
 
-    return image;
+    return timesheet;
   } catch (error) {
     throw error;
   }
 }
 
-export async function getImageById(id: string) {
+export async function getTimesheetById(id: string) {
   try {
     const userId = await getUserId();
 
-    const image = await prisma.imageMetadata.findFirst({
+    const timesheet = await prisma.timesheet.findFirst({
       where: { userId: userId, id: id },
       select: {
+        id: true,
         userId: true,
         imageUrl: true,
         imageDownloadUrl: true,
-        id: true,
-        imageWeekNumber: true,
+        weekNumber: true,
         uploadDate: true,
+        regularHours: true,
+        accruedHours: true,
+        usedAccruedHours: true,
+        overtimeHours: true,
+        travelDistanceKM: true,
+        extraToolCompensation: true,
+        extraTransportationCompensation: true,
       },
     });
 
-    return image;
+    return timesheet;
   } catch (error) {
     throw error;
   }

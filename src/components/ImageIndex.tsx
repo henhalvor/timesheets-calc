@@ -1,4 +1,4 @@
-import { deleteImageById } from "@/actions/delete";
+import { deleteTimesheetById } from "@/actions/delete";
 import { ImageType } from "@/types";
 import React from "react";
 
@@ -15,7 +15,7 @@ export default function ImageIndex({ image }: ImageIndexProps) {
   return (
     <div className="h-[330px] w-full flex flex-1 flex-col justify-between items-center border-solid border-gray-500 border-[1px] rounded-md p-2">
       <div className="flex flex-col gap-2">
-        <h2 className="text-2xl font-bold">Week {image.imageWeekNumber}</h2>
+        <h2 className="text-2xl font-bold">Week {image.weekNumber}</h2>
         <p className="mb-8">
           Uploaded:{" "}
           {uploadDate.toLocaleDateString("en-GB", {
@@ -32,7 +32,7 @@ export default function ImageIndex({ image }: ImageIndexProps) {
         </a>
       </div>
       <div>
-        <form action={deleteImageById}>
+        <form action={deleteTimesheetById}>
           <label className="hidden">Image Id</label>
           <input
             type="text"

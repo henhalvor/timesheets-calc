@@ -6,7 +6,7 @@ import prisma from "@/lib/prisma";
 import { getUserId } from "@/lib/user";
 import { redirect } from "next/navigation";
 
-async function uploadImageMetadataToDB(
+async function uploadTimesheetToDb(
   blob: PutBlobResult,
   formData: FormData
 ) {
@@ -14,16 +14,30 @@ async function uploadImageMetadataToDB(
   const imageUrl = blob.url;
   const imageDownloadUrl = blob.downloadUrl;
   const uploadDate = Date.now();
-  const imageWeekNumber = Number(formData.get("week-number"));
+  const weekNumber = Number(formData.get("week-number"));
+  const regularHours = 12
+  const accruedHours = 12
+  const usedAccruedHours = 12
+  const overtimeHours = 12
+  const travelDistanceKM = 12
+  const extraToolCompensation = 12
+  const extraTransportationCompensation = 12
 
-  if (userId && imageUrl && imageDownloadUrl && uploadDate && imageWeekNumber) {
-    const newEntry = await prisma.imageMetadata.create({
+  if (userId && imageUrl && imageDownloadUrl && uploadDate && weekNumber) {
+    const newEntry = await prisma.timesheet.create({
       data: {
         userId,
         imageUrl,
         imageDownloadUrl,
-        imageWeekNumber,
+        weekNumber,
         uploadDate,
+        regularHours,
+        accruedHours,
+        usedAccruedHours,
+        overtimeHours,
+        travelDistanceKM,
+        extraToolCompensation,
+        extraTransportationCompensation,
       },
     });
     console.log(newEntry);
@@ -31,13 +45,22 @@ async function uploadImageMetadataToDB(
   return;
 }
 
-export async function uploadImage(formData: FormData) {
+
+
+/**
+ * Uploads a timesheet image to Vercel-blob-store and timesheet metadata to the database.
+ *
+ * Accepts a FormData object containing the image file and timesheet metadata.
+ * Uploads the image to Vercel Blob Store and saves the metadata to the database.
+ * Handles errors and redirects back to the timesheets page on success.
+ */
+export async function uploadTimesheet(formData: FormData) {
   try {
     const imageFile = formData.get("image") as File;
     const blob = await put(imageFile.name, imageFile, {
       access: "public",
     });
-    uploadImageMetadataToDB(blob, formData);
+    uploadTimesheetToDb(blob, formData);
   } catch (error: any) {
     console.log(error);
   }
