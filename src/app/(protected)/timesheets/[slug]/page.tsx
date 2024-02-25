@@ -2,7 +2,7 @@ import { getTimesheetById } from "@/lib/userImages";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
-import ImageIndex from "@/components/ImageIndex";
+import TimesheetIndex from "@/components/ImageIndex";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const timesheet = await getTimesheetById(params.slug);
