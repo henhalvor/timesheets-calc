@@ -5,10 +5,10 @@ import React from "react";
 import ImageIndex from "@/components/ImageIndex";
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const image = await getTimesheetById(params.slug);
+  const timesheet = await getTimesheetById(params.slug);
 
-  // Check if the image exists
-  if (!image) {
+  // Check if the timesheet exists
+  if (!timesheet) {
     notFound();
   }
 
@@ -17,13 +17,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <div className="border-solid border-gray-500 border-[1px] rounded-md p-1">
         <Image
           className="h-auto w-60"
-          src={image.imageUrl}
+          src={timesheet.imageUrl}
           alt="Image of timesheet"
           width={600}
           height={1000}
         />
       </div>
-      <ImageIndex image={image} />
+      <TimesheetIndex timesheet={timesheet} />
     </div>
   );
 }

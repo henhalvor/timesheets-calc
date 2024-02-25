@@ -4,12 +4,10 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { ImageType } from "@/types";
-
-
+import { TimesheetType } from "@/types";
 
 interface UsersImagesProps {
-  images: ImageType[] | null;
+  images: TimesheetType[] | null;
 }
 
 export default function UsersImages({ images }: UsersImagesProps) {
