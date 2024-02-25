@@ -10,11 +10,27 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model ImageMetadata {
+model Timesheet {
   id        String     @default(cuid()) @id
   userId    String
   imageUrl  String
   imageDownloadUrl String
-  imageWeekNumber  Int
+  weekNumber  Int
   uploadDate BigInt
+  regularHours Float
+  accruedHours Float
+  usedAccruedHours Float
+  overtimeHours Float
+  travelDistanceKM Float
+  extraToolCompensation Int
+  extraTransportationCompensation Int
 }
+
+// model ImageMetadata {
+//   id        String     @default(cuid()) @id
+//   userId    String
+//   imageUrl  String
+//   imageDownloadUrl String
+//   imageWeekNumber  Int
+//   uploadDate BigInt
+// }
