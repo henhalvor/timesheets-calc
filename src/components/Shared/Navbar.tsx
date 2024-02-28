@@ -21,7 +21,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="flex justify-between bg-gray-500">
+    <nav className="flex justify-between bg-background border-b-border border-b-[1px]">
       <h1 className="font-bold text-2xl p-4">TimeSheetsCalc</h1>
       <div className="relative h-full flex items-center mr-5">
         <ul className="hidden md:flex items-center gap-6">
@@ -40,8 +40,8 @@ export default function Navbar() {
           <IoMenu
             size={40}
             onClick={() => {
-              toggleCollapse()
-              handleOpenMenuClick()
+              toggleCollapse();
+              handleOpenMenuClick();
             }}
             className="md:hidden opacity-70 hover:cursor-pointer hover:opacity-100 hover:scale-110"
           />
@@ -53,7 +53,7 @@ export default function Navbar() {
           />
         )}
         {isCollapsed ? null : (
-          <div className="md:hidden absolute top-full right-0 mt-1 flex flex-col justify-center w-[8rem] p-4 bg-gray-500 border-solid border-gray-500 border-[1px] rounded-md z-50">
+          <div className="md:hidden absolute top-full right-0 mt-1 flex flex-col justify-center w-[8rem] p-4 bg-gray-500 border-solid border-border border-[1px] rounded-md z-50">
             <ul className="flex flex-col gap-2">
               <li className="hover:scale-105 font-semibold">
                 <Link href="/">Home</Link>

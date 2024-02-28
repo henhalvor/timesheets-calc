@@ -22,7 +22,7 @@ export default function UsersImages({ images }: UsersImagesProps) {
       {images.map((image, index) => (
         <div
           key={index}
-          className="flex flex-col gap-2 items-center hover:cursor-pointer hover:scale-105 rounded-md bg-gray-500 border-solid border-gray-500 border-[1px] p-1"
+          className="flex flex-col gap-2 items-center hover:cursor-pointer hover:scale-105 rounded-md bg-primary-foreground border-solid border-border border-[1px] p-1"
           onClick={() => {
             router.push(`/timesheets/${image.id}`);
           }}

@@ -11,7 +11,7 @@ export default function RootLayout({
     <>
       <Navbar />
 
-      <main className="flex-1 flex justify-center items-center bg-white">
+      <main className="flex-1 flex justify-center items-center bg-background">
         {children}
       </main>
 

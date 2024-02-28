@@ -14,7 +14,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div className="h-min w-auto flex flex-col md:flex-row gap-2 m-8">
-      <div className=" m-auto border-solid border-gray-500 border-[1px] rounded-md p-1">
+      <div className=" m-auto border-solid border-border border-[1px] rounded-md p-1">
         <Image
           className="h-auto w-[300px]"
           src={timesheet.imageUrl}
