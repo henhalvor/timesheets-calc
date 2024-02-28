@@ -1,4 +1,4 @@
-import { ImageForm } from "@/components/UI/ImageForm";
+import { ImageForm } from "@/components/ImageForm";
 import UsersImages from "@/components/UsersImages";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 

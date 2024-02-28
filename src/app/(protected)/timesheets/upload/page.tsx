@@ -1,4 +1,4 @@
-import { ImageForm } from '@/components/UI/ImageForm'
+import { ImageForm } from '@/components/ImageForm'
 import React from 'react'
 
 export default function Page() {
