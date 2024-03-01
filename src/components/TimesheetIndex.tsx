@@ -88,7 +88,7 @@ export default function TimesheetIndex({ timesheet }: TimesheetIndexProps) {
             Download
           </a>
         </div>
-        <form action={deleteTimesheetById}>
+        {/* <form action={deleteTimesheetById}>
           <label className="hidden">Image Id</label>
           <input
             type="text"
@@ -98,13 +98,50 @@ export default function TimesheetIndex({ timesheet }: TimesheetIndexProps) {
             readOnly
             className="hidden"
           />
+
           <Button
             variant={"destructive"}
             className="  rounded-md pt-6 pb-6 p2 text-md  hover:font-semibold hover:scale-105 m-2 "
           >
             Delete Timesheet
           </Button>
-        </form>
+        </form> */}
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <Button
+              variant={"destructive"}
+              className="  rounded-md pt-6 pb-6 p2 text-md  hover:font-semibold hover:scale-105 m-2 "
+            >
+              Delete Timesheet
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <form action={deleteTimesheetById}>
+              <label className="hidden">Image Id</label>
+              <input
+                type="text"
+                id="id"
+                name="id"
+                value={timesheet.id}
+                readOnly
+                className="hidden"
+              />
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete
+                  the timesheet and remove it from our servers.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                  Delete
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </form>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
       <p className=" text-xs absolute bottom-0 right-2">
         Uploaded:{" "}
