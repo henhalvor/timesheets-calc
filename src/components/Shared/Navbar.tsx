@@ -22,7 +22,9 @@ export default function Navbar() {
 
   return (
     <nav className="flex justify-between bg-background border-b-border border-b-[1px]">
-      <h1 className="font-bold text-2xl p-4">TimeSheetsCalc</h1>
+      <h1 className="font-bold text-2xl p-4">
+        <Link href={"/"}>TimeSheetsCalc</Link>
+      </h1>
       <div className="relative h-full flex items-center mr-5">
         <ul className="hidden md:flex items-center gap-6">
           <li>
