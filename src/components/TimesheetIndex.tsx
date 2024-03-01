@@ -1,6 +1,18 @@
 import { deleteTimesheetById } from "@/actions/delete";
 import { TimesheetType } from "@/types";
 import React from "react";
+import { Button } from "./ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 type TimesheetIndexProps = {
   timesheet: TimesheetType | null;
@@ -86,9 +98,12 @@ export default function TimesheetIndex({ timesheet }: TimesheetIndexProps) {
             readOnly
             className="hidden"
           />
-          <button className=" text-white rounded-md p-2  hover:font-semibold hover:scale-105 m-2 bg-red-700">
+          <Button
+            variant={"destructive"}
+            className="  rounded-md pt-6 pb-6 p2 text-md  hover:font-semibold hover:scale-105 m-2 "
+          >
             Delete Timesheet
-          </button>
+          </Button>
         </form>
       </div>
       <p className=" text-xs absolute bottom-0 right-2">
