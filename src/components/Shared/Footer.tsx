@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="ml-0 mr-auto">
         <ThemeToggle />
       </div>
-      <LogoutLink className="">Log out</LogoutLink>
+      <LogoutLink className="font-light">Log out</LogoutLink>
     </footer>
   );
 }
