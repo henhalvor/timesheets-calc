@@ -13,6 +13,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import ToastedButton from "./toasted-button";
 
 type TimesheetIndexProps = {
   timesheet: TimesheetType | null;
@@ -135,8 +136,8 @@ export default function TimesheetIndex({ timesheet }: TimesheetIndexProps) {
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
-                  Delete
+                <AlertDialogAction className="h-[40px] w-[75px] bg-destructive text-destructive-foreground hover:bg-destructive/90 p-0">
+                  <ToastedButton name="Delete" title="Deletion" description="Successfully deleted timesheet!" className="w-full h-full"/>
                 </AlertDialogAction>
               </AlertDialogFooter>
             </form>

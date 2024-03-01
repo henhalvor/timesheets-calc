@@ -1,12 +1,12 @@
-import UsersImages from "@/components/UsersImages";
+import UsersTimesheets from "@/components/UsersTimesheets";
 import { getAllUserTimesheets } from "@/lib/userImages";
 import React from "react";
 
 export default async function Page() {
-  const images = await getAllUserTimesheets();
+  const timesheets = await getAllUserTimesheets();
   return (
     <div>
-      <UsersImages images={images}/>
+      <UsersTimesheets timesheets={timesheets}/>
     </div>
   );
 }

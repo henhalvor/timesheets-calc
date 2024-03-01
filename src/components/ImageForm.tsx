@@ -1,6 +1,7 @@
 import { uploadTimesheet } from "@/actions/upload";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { LuImagePlus } from "react-icons/lu";
+import { Button } from "./ui/button";
 
 export async function ImageForm() {
   return (
@@ -8,7 +9,7 @@ export async function ImageForm() {
       action={uploadTimesheet}
       className="flex flex-col max-w-[600px] gap-5 items-center border-solid border-border border-[1px] rounded-md p-4"
     >
-      <label className="  flex items-center gap-2 border-solid border-border border-[1px] rounded-md p-2 hover:border-black hover:font-semibold hover:scale-105">
+      <label className="bg-primary text-primary-foreground flex items-center gap-2 border-solid border-border border-[1px] rounded-md p-2 font-semibold hover:scale-105">
         <input
           type="file"
           id="image"
@@ -29,7 +30,7 @@ export async function ImageForm() {
             id="week-number"
             name="week-number"
             required
-            className="bg-input   border-solid border-border hover:border-black border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
+            className="bg-input   border-solid border-border  border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
             placeholder="Enter week number..."
           />
         </div>
@@ -43,7 +44,7 @@ export async function ImageForm() {
             id="hours"
             name="hours"
             required
-            className="bg-input   border-solid border-border hover:border-black border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
+            className="bg-input   border-solid border-border  border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
             placeholder="Enter number of hours..."
           />
         </div>
@@ -56,7 +57,7 @@ export async function ImageForm() {
             step={0.5}
             id="accrued-hours"
             name="accrued-hours"
-            className="bg-input   border-solid border-border hover:border-black border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
+            className="bg-input   border-solid border-border  border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
             placeholder="Enter number of accrued Hours..."
           />
         </div>
@@ -69,7 +70,7 @@ export async function ImageForm() {
             step={0.5}
             id="used-accrued-hours"
             name="used-accrued-hours"
-            className="bg-input   border-solid border-border hover:border-black border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
+            className="bg-input   border-solid border-border  border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
             placeholder="Enter number of used accrued Hours..."
           />
         </div>
@@ -82,7 +83,7 @@ export async function ImageForm() {
             step={0.5}
             id="overtime-hours"
             name="overtime-hours"
-            className="bg-input   border-solid border-border hover:border-black border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
+            className="bg-input   border-solid border-border  border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
             placeholder="Enter number of Overtime Hours..."
           />
         </div>
@@ -95,7 +96,7 @@ export async function ImageForm() {
             step={0.1}
             id="travel-distance"
             name="travel-distance"
-            className="bg-input   border-solid border-border hover:border-black border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
+            className="bg-input   border-solid border-border  border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
             placeholder="Enter travel distance in KM..."
           />
         </div>
@@ -107,30 +108,29 @@ export async function ImageForm() {
             type="number"
             id="extra-tool-compensation"
             name="extra-tool-compensation"
-            className="bg-input   border-solid border-border hover:border-black border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
+            className="bg-input   border-solid border-border  border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
             placeholder="Enter amount of tool compensation..."
           />
         </div>
         <div className="flex flex-col gap-1">
-          <label
-            htmlFor="extra-transportation-compensation"
-            className=""
-          >
+          <label htmlFor="extra-transportation-compensation" className="">
             Transport Compensation
           </label>
           <input
             type="number"
             id="extra-transportation-compensation"
             name="extra-transportation-compensation"
-            className="bg-input   border-solid border-border hover:border-black border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
+            className="bg-input   border-solid border-border  border-[1px] rounded-md p-2 hover:scale-105 placeholder:text-xs"
             placeholder="Enter amount of transport compensation..."
           />
         </div>
       </div>
-      <button className="  flex gap-2 items-center border-solid border-border hover:border-black hover:font-bold hover:scale-105 border-[1px] rounded-md p-2 font-semibold">
+      <Button variant={"default"} className="  flex gap-2 items-center border-solid border-border hover:scale-105 border-[1px] rounded-md p-2 font-semibold">
         <IoCloudUploadOutline size={24} />
         Upload
-      </button>
+      </Button>
+      {/* <button className="  flex gap-2 items-center border-solid border-border  hover:font-bold hover:scale-105 border-[1px] rounded-md p-2 font-semibold">
+      </button> */}
     </form>
   );
 }
