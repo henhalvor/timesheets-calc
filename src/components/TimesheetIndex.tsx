@@ -138,11 +138,11 @@ export default function TimesheetIndex({ timesheet }: TimesheetIndexProps) {
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction className="h-[40px] w-[75px] bg-destructive text-destructive-foreground hover:bg-destructive/90 p-0">
+                <AlertDialogAction className="h-[40px] bg-destructive text-destructive-foreground hover:bg-destructive/90 p-0">
                   <ToastedButton
                     title="Deletion"
                     description="Successfully deleted timesheet!"
-                    className="w-full h-full"
+                    className="w-full h-full pl-4 pr-4"
                   >
                     Delete
                   </ToastedButton>
