@@ -14,6 +14,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import ToastedButton from "./toasted-button";
+import Link from "next/link";
 
 type TimesheetIndexProps = {
   timesheet: TimesheetType | null;
@@ -28,6 +29,7 @@ export default function TimesheetIndex({ timesheet }: TimesheetIndexProps) {
   return (
     <div className="flex w-[310px] md:flex-1 md:w-auto flex-col justify-between items-center border-solid border-border border-[1px] rounded-md p-4 relative gap-10">
       <div className="flex flex-col gap-3">
+        <Link className="absolute right-2 top-1" href={`/timesheets/${timesheet.id}/edit`}>Edit</Link>
         <h2 className="text-2xl font-bold self-center mb-8 ">
           Week {timesheet.weekNumber}
         </h2>
