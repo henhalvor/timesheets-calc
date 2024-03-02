@@ -5,6 +5,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { TimesheetType } from "@/types";
+import { sortTimesheets } from "@/lib/timesheets";
 
 interface UsersTimesheetsProps {
   timesheets: TimesheetType[] | null;
@@ -12,14 +13,16 @@ interface UsersTimesheetsProps {
 
 export default function UsersTimesheets({ timesheets }: UsersTimesheetsProps) {
   if (!timesheets) {
-    notFound();
+    notFound(); // change to message saying user has no timesheets
   }
 
   const router = useRouter();
 
+  const sortedTimesheets = sortTimesheets(timesheets);
+
   return (
     <div className="image-gallery flex flex-col sm:flex-row sm:flex-wrap gap-3 m-4 p-4">
-      {timesheets.map((timesheet, index) => (
+      {sortedTimesheets.map((timesheet, index) => (
         <div
           key={index}
           className="relative flex flex-col gap-2 items-center hover:cursor-pointer hover:scale-105 rounded-md bg-primary-foreground border-solid border-border border-[1px] p-1"
