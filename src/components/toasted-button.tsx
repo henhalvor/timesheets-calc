@@ -4,7 +4,6 @@ import React, { ButtonHTMLAttributes, ReactNode } from "react";
 import { useToast } from "@/components/ui/use-toast";
 
 interface ToastedButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  
   title: string; // Title for the toast
   description: string; // Description for the toast
   children?: ReactNode; // Children elements
@@ -13,17 +12,22 @@ interface ToastedButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 // Unstyled button which wraps a child button.
 // Example:
 {
-  /* <Button variant={"destructive"} className="text-xl font-bold">
+  /* <Button
+        variant={"default"}
+        className=" h-[42px] w-24 m-0 p-0 border-solid border-border hover:scale-105 border-[1px] rounded-md font-semibold"
+      >
         <ToastedButton
-          name="test-btn"
-          title="test toast"
-          description="testing toast"
-        />
+          title="Upload"
+          description="Successfully uploaded timesheet"
+          className="w-full h-full flex items-center justify-center gap-2"
+        >
+          <IoCloudUploadOutline size={24} className="" />
+          Upload
+        </ToastedButton>
       </Button> */
 }
 
 const ToastedButton: React.FC<ToastedButtonProps> = ({
-  
   title,
   description,
   children,
@@ -41,7 +45,6 @@ const ToastedButton: React.FC<ToastedButtonProps> = ({
   return (
     <button onClick={handleButtonClick} {...rest}>
       {children}
-      {name}
     </button>
   );
 };
