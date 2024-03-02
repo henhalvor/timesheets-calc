@@ -2,6 +2,7 @@ import { uploadTimesheet } from "@/actions/upload";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { LuImagePlus } from "react-icons/lu";
 import { Button } from "./ui/button";
+import ToastedButton from "./toasted-button";
 
 export async function ImageForm() {
   return (
@@ -125,12 +126,19 @@ export async function ImageForm() {
           />
         </div>
       </div>
-      <Button variant={"default"} className="  flex gap-2 items-center border-solid border-border hover:scale-105 border-[1px] rounded-md p-2 font-semibold">
-        <IoCloudUploadOutline size={24} />
-        Upload
+      <Button
+        variant={"default"}
+        className=" h-[42px] w-24 m-0 p-0 border-solid border-border hover:scale-105 border-[1px] rounded-md font-semibold"
+      >
+        <ToastedButton
+          title="Upload"
+          description="Successfully uploaded timesheet"
+          className="w-full h-full flex items-center justify-center gap-2"
+        >
+          <IoCloudUploadOutline size={24} className="" />
+          Upload
+        </ToastedButton>
       </Button>
-      {/* <button className="  flex gap-2 items-center border-solid border-border  hover:font-bold hover:scale-105 border-[1px] rounded-md p-2 font-semibold">
-      </button> */}
     </form>
   );
 }
