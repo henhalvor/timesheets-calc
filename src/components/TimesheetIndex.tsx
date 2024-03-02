@@ -130,14 +130,20 @@ export default function TimesheetIndex({ timesheet }: TimesheetIndexProps) {
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  the timesheet and remove it from our servers.
+                  This action cannot be undone. This will permanently delete the
+                  timesheet and remove it from our servers.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction className="h-[40px] w-[75px] bg-destructive text-destructive-foreground hover:bg-destructive/90 p-0">
-                  <ToastedButton name="Delete" title="Deletion" description="Successfully deleted timesheet!" className="w-full h-full"/>
+                  <ToastedButton
+                    title="Deletion"
+                    description="Successfully deleted timesheet!"
+                    className="w-full h-full"
+                  >
+                    Delete
+                  </ToastedButton>
                 </AlertDialogAction>
               </AlertDialogFooter>
             </form>

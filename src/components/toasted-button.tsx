@@ -1,15 +1,34 @@
-"use client"
+"use client";
 
-import React, { ButtonHTMLAttributes } from 'react';
-import { useToast } from '@/components/ui/use-toast';
+import React, { ButtonHTMLAttributes, ReactNode } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 interface ToastedButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  name: string // Button name
+  
   title: string; // Title for the toast
   description: string; // Description for the toast
+  children?: ReactNode; // Children elements
 }
 
-const ToastedButton: React.FC<ToastedButtonProps> = ({ name, title, description, ...rest }) => {
+// Unstyled button which wraps a child button.
+// Example:
+{
+  /* <Button variant={"destructive"} className="text-xl font-bold">
+        <ToastedButton
+          name="test-btn"
+          title="test toast"
+          description="testing toast"
+        />
+      </Button> */
+}
+
+const ToastedButton: React.FC<ToastedButtonProps> = ({
+  
+  title,
+  description,
+  children,
+  ...rest
+}) => {
   const { toast } = useToast();
 
   const handleButtonClick = () => {
@@ -20,7 +39,8 @@ const ToastedButton: React.FC<ToastedButtonProps> = ({ name, title, description,
   };
 
   return (
-    <button onClick={handleButtonClick} className="bg-primary text-primary-foreground hover:bg-primary/90 " {...rest}>
+    <button onClick={handleButtonClick} {...rest}>
+      {children}
       {name}
     </button>
   );
