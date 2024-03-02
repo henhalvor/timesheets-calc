@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 
 export default async function Dashboard() {
-  const data = await getDashboardData();
+  const data = await getDashboardData(2024); // add a dropwdown menu to change the year instead of hardcoding 
   if (!data) {
     return <div>No data</div>;
   }

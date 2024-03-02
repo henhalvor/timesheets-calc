@@ -4,11 +4,11 @@ import prisma from "@/lib/prisma";
 import { getUserId } from "@/lib/user";
 import { multiplyArrayElements } from "@/lib/utils";
 
-export async function getDashboardData() {
+export async function getDashboardData(year: number) {
   try {
     const userId = await getUserId();
 
-    const data = await prisma.timesheet.findMany({
+    const allData = await prisma.timesheet.findMany({
       where: { userId: userId },
       select: {
         regularHours: true,
@@ -18,7 +18,13 @@ export async function getDashboardData() {
         extraToolCompensation: true,
         extraTransportationCompensation: true,
         travelDistanceKM: true,
+        uploadDate: true
       },
+    });
+
+    const data = allData.filter((timesheet) => {
+      const timesheetYear = new Date(Number(BigInt(timesheet.uploadDate))).getFullYear();
+      return timesheetYear === year;
     });
 
 
