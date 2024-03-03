@@ -4,7 +4,7 @@ import { LuImagePlus } from "react-icons/lu";
 import { Button } from "./ui/button";
 import ToastedButton from "./toasted-button";
 
-export async function ImageForm() {
+export async function TimesheetForm() {
   return (
     <form
       action={uploadTimesheet}
