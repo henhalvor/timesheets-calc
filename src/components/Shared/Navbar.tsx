@@ -36,7 +36,6 @@ export default function Navbar() {
           <li>
             <Link href="/timesheets/upload">Upload</Link>
           </li>
-          <li>Nav item 4</li>
         </ul>
         {isCollapsed ? (
           <IoMenu
