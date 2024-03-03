@@ -3,6 +3,7 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { LuImagePlus } from "react-icons/lu";
 import { Button } from "./ui/button";
 import ToastedButton from "./toasted-button";
+import FileInput from "./file-input";
 
 export async function TimesheetForm() {
   return (
@@ -10,17 +11,7 @@ export async function TimesheetForm() {
       action={uploadTimesheet}
       className="flex flex-col max-w-[600px] gap-5 items-center border-solid border-border border-[1px] rounded-md p-4"
     >
-      <label className="bg-primary text-primary-foreground flex items-center gap-2 border-solid border-border border-[1px] rounded-md p-2 font-semibold hover:scale-105">
-        <input
-          type="file"
-          id="image"
-          name="image"
-          required
-          className="hidden"
-        />
-        <LuImagePlus size={24} className="" />
-        Upload Image
-      </label>
+      <FileInput />
       <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly items-center justify-center gap-2">
         <div className="flex flex-col gap-1">
           <label htmlFor="week-number" className="">

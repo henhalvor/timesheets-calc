@@ -5,6 +5,7 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { LuImagePlus } from "react-icons/lu";
 import { editTimesheet } from "@/actions/edit";
 import { getTimesheetById } from "@/lib/userImages";
+import FileInput from "./file-input";
 
 type Props = {
   id: string | null;
@@ -27,16 +28,7 @@ export default async function EditTimesheetForm({ id }: Props) {
       action={submitAction}
       className="flex flex-col max-w-[600px] gap-5 items-center border-solid border-border border-[1px] rounded-md p-4"
     >
-      <label className="bg-primary text-primary-foreground flex items-center gap-2 border-solid border-border border-[1px] rounded-md p-2 font-semibold hover:scale-105">
-        <input
-          type="file"
-          id="image"
-          name="image"
-          className="hidden"
-        />
-        <LuImagePlus size={24} className="" />
-        Upload Image
-      </label>
+      <FileInput />
       <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly items-center justify-center gap-2">
         <div className="flex flex-col gap-1">
           <label htmlFor="week-number" className="">
