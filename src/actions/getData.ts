@@ -1,4 +1,4 @@
-
+"use server"
 
 import prisma from "@/lib/prisma";
 import { getUserId } from "@/lib/user";
