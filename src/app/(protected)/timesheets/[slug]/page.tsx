@@ -3,6 +3,14 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
 import TimesheetIndex from "@/components/TimesheetIndex";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "TimeSheets-Calc | Details",
+  description: "Detailed overview of a timesheets content.",
+  keywords: ["details", "timesheet"]
+};
+
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const timesheet = await getTimesheetById(params.slug);

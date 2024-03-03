@@ -1,5 +1,13 @@
 import { ImageForm } from '@/components/ImageForm'
+import { Metadata } from 'next';
 import React from 'react'
+
+export const metadata: Metadata = {
+  title: "TimeSheets-Calc | Upload",
+  description: "Upload a timesheets details and image.",
+  keywords: ["upload", "timesheet"]
+};
+
 
 export default function Page() {
   return (
