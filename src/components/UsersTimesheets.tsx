@@ -5,7 +5,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { TimesheetType } from "@/types";
-import { sortTimesheets } from "@/lib/timesheets";
+import { getTimesheetsForYear, sortTimesheets } from "@/lib/timesheets";
 import { getListedYears } from "@/lib/utils";
 import {
   Select,
@@ -20,9 +20,6 @@ interface UsersTimesheetsProps {
 }
 
 export default function UsersTimesheets({ timesheets }: UsersTimesheetsProps) {
-  // State to store dashboard data
-  const [loading, setLoading] = useState(true); // State to manage loading state
-
   const [selectedYear, setSelectedYear] = useState(
     new Date().getFullYear().toString()
   ); // set to current year
@@ -33,10 +30,10 @@ export default function UsersTimesheets({ timesheets }: UsersTimesheetsProps) {
 
   const router = useRouter();
 
-  const sortedTimesheets = sortTimesheets(timesheets);
+  const filteredTimesheets = getTimesheetsForYear(Number(selectedYear), timesheets);
+ 
 
   const listedYears = getListedYears(10);
-
   return (
     <div>
       <div className="flex justify-center mt-8 mb-4">
@@ -54,7 +51,10 @@ export default function UsersTimesheets({ timesheets }: UsersTimesheetsProps) {
         </Select>
       </div>
       <div className="image-gallery flex flex-col sm:flex-row sm:flex-wrap gap-3 m-4 p-4">
-        {sortedTimesheets.map((timesheet, index) => (
+        {filteredTimesheets == null && (
+          <p className="text-center">No timesheets found for this year</p>
+        )}
+        {filteredTimesheets && filteredTimesheets.map((timesheet, index) => (
           <div
             key={index}
             className="relative flex flex-col gap-2 items-center hover:cursor-pointer hover:scale-105 rounded-md bg-primary-foreground border-solid border-border border-[1px] p-1"

@@ -18,3 +18,19 @@ export function sortTimesheets(timesheets: TimesheetType[]) {
   });
   return timesheets;
 }
+
+
+export function getTimesheetsForYear(year: number, timesheets: TimesheetType[]) {
+  let filteredTimesheets = timesheets.filter((timesheet) => {
+    const timesheetYear = new Date(Number(BigInt(timesheet.uploadDate))).getFullYear();
+    return timesheetYear === year;
+  });
+
+  if (filteredTimesheets.length === 0) {
+    return null;
+  }
+
+  filteredTimesheets = sortTimesheets(filteredTimesheets)
+  
+  return filteredTimesheets;
+}

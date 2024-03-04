@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/prisma";
 import { getUserId } from "@/lib/user";
+import { getAllUserTimesheets } from "@/lib/userImages";
 import { multiplyArrayElements } from "@/lib/utils";
 
 export async function getDashboardData(year: number) {
@@ -69,3 +70,5 @@ export async function getDashboardData(year: number) {
     console.log(error);
   }
 }
+
+
