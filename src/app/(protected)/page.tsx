@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { getListedYears } from "@/lib/utils";
 
 type DashboardData = {
   regularHours: number;
@@ -95,7 +96,7 @@ export default function Dashboard() {
     travelDistanceKM,
   } = dashboardData;
 
-  const listedYears = getListedYears();
+  const listedYears = getListedYears(10);
 
   return (
     <div>
@@ -207,14 +208,7 @@ export default function Dashboard() {
   );
 }
 
-function getListedYears() {
-  const currentYear = new Date().getFullYear();
-  const years = [];
-  for (let i = currentYear; i >= currentYear - 9; i--) {
-    years.push(i);
-  }
-  return years;
-}
+
 
 function CardSkeleton() {
   return (

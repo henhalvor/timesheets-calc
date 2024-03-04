@@ -6,15 +6,10 @@ import React from "react";
 export const metadata: Metadata = {
   title: "TimeSheets-Calc | Timesheets",
   description: "Overview of all timesheets.",
-  keywords: ["timesheets", "overview"]
+  keywords: ["timesheets", "overview"],
 };
-
 
 export default async function Page() {
   const timesheets = await getAllUserTimesheets();
-  return (
-    <div>
-      <UsersTimesheets timesheets={timesheets}/>
-    </div>
-  );
+  return <UsersTimesheets timesheets={timesheets} />;
 }
