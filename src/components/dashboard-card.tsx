@@ -35,11 +35,11 @@ type CardProps = {
   cardDataSuffix: string;
 };
 
-type CardModalProps = {
-  cardData: number;
-  cardDataSuffix: string;
-  modalData: DashboardModalData | null;
-};
+type ModalProps = {
+  modalData: Number[] | null;
+}
+
+type CardModalProps = CardProps & ModalProps;
 
 function DashboardCard({ cardData, cardDataSuffix }: CardProps) {
   return (
@@ -57,7 +57,7 @@ function DashboardCard({ cardData, cardDataSuffix }: CardProps) {
   );
 }
 
-function DashboardModalContent() {}
+function DashboardModalContent({ modalData }: ModalProps) {}
 
 export default function DashboardCardAndModal({
   cardData,

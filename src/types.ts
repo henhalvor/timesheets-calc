@@ -26,12 +26,12 @@ export type DashboardCardData = {
 };
 
 export type DashboardModalData = {
-  uploadDate: bigint;
-  regularHours: number;
-  accruedHours: number;
-  usedAccruedHours: number;
-  overtimeHours: number;
-  travelDistanceKM: number;
-  extraToolCompensation: number;
-  extraTransportationCompensation: number;
-}[];
+  regularHoursData: number[];
+  accruedHoursLeftData: number[];
+  usedAccruedHoursData: number[];
+  overtimeHoursData: number[];
+  totalHoursData: number[];
+  travelDistanceKMData: number[];
+  extraToolCompensationData: number[];
+  extraTransportationCompensationData: number[];
+};

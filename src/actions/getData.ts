@@ -6,7 +6,7 @@ import { getAllUserTimesheets } from "@/lib/userImages";
 import { multiplyArrayElements } from "@/lib/utils";
 import { TimesheetType } from "@/types";
 
-export async function getDashboardTimesheetsDataByYear(year: number) {
+async function getDashboardTimesheetsDataByYear(year: number) {
   try {
     const userId = await getUserId();
 
@@ -37,12 +37,64 @@ export async function getDashboardTimesheetsDataByYear(year: number) {
   }
 }
 
-export async function getDashboardCardData(year: number) {
+export async function getDashboardModalData(year: number) {
   try {
-    const data = await getDashboardTimesheetsDataByYear(year)
+    const data = await getDashboardTimesheetsDataByYear(year);
     if (!data) {
       throw new Error("No data found");
+    }
+    const regularHoursData = data.map((item) => item.regularHours);
+    const accruedHoursData = data.map((item) => item.accruedHours);
+    const usedAccruedHoursData = data.map((item) => item.usedAccruedHours);
+    const overtimeHoursData = data.map((item) => item.overtimeHours);
+    const travelDistanceKMData = data.map((item) => item.travelDistanceKM);
+    const extraToolCompensationData = data.map(
+      (item) => item.extraToolCompensation
+    );
+    const extraTransportationCompensationData = data.map(
+      (item) => item.extraTransportationCompensation
+    );
+    const accruedHoursLeftData = [
+      accruedHoursData.reduce(
+        (accumulator, currentValue) => accumulator + currentValue
+      ) -
+        usedAccruedHoursData.reduce(
+          (accumulator, currentValue) => accumulator + currentValue
+        ),
+    ];
+
+    const totalHoursData = [
+      regularHoursData.reduce(
+        (accumulator, currentValue) => accumulator + currentValue
+      ) +
+        accruedHoursData.reduce(
+          (accumulator, currentValue) => accumulator + currentValue
+        ) +
+        overtimeHoursData.reduce(
+          (accumulator, currentValue) => accumulator + currentValue
+        ),
+    ];
+    return {
+      regularHoursData,
+      accruedHoursLeftData,
+      usedAccruedHoursData,
+      overtimeHoursData,
+      totalHoursData,
+      travelDistanceKMData,
+      extraToolCompensationData,
+      extraTransportationCompensationData,
     };
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getDashboardCardData(year: number) {
+  try {
+    const data = await getDashboardTimesheetsDataByYear(year);
+    if (!data) {
+      throw new Error("No data found");
+    }
 
     const regularHours = multiplyArrayElements(
       data.map((timesheet) => timesheet.regularHours)

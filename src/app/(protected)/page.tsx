@@ -2,7 +2,7 @@
 
 import {
   getDashboardCardData,
-  getDashboardTimesheetsDataByYear,
+  getDashboardModalData,
 } from "@/actions/getData";
 import {
   Card,
@@ -41,9 +41,7 @@ export default function Dashboard() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const modalData = await getDashboardTimesheetsDataByYear(
-          Number(selectedYear)
-        );
+        const modalData = await getDashboardModalData(Number(selectedYear));
         if (!modalData) {
           throw new Error("No dashboardModalData found");
         }
@@ -85,7 +83,7 @@ export default function Dashboard() {
     );
   }
 
-  if (!dashboardCardData) {
+  if (!dashboardCardData || !dashboardModalData) {
     return <div>No data</div>; // Render no data message if data is not available
   }
 
@@ -99,6 +97,17 @@ export default function Dashboard() {
     extraTransportationCompensation,
     travelDistanceKM,
   } = dashboardCardData;
+
+  const {
+    regularHoursData,
+    accruedHoursLeftData,
+    usedAccruedHoursData,
+    overtimeHoursData,
+    totalHoursData,
+    travelDistanceKMData,
+    extraToolCompensationData,
+    extraTransportationCompensationData,
+  } = dashboardModalData;
 
   const listedYears = getListedYears(10);
 
@@ -122,42 +131,42 @@ export default function Dashboard() {
         <DashboardCardAndModal
           cardData={regularHours}
           cardDataSuffix={"/h"}
-          modalData={dashboardModalData}
+          modalData={regularHoursData}
         />
         <DashboardCardAndModal
           cardData={accruedHoursLeft}
           cardDataSuffix={"/h"}
-          modalData={dashboardModalData}
+          modalData={accruedHoursLeftData}
         />
         <DashboardCardAndModal
           cardData={usedAccruedHours}
           cardDataSuffix={"/h"}
-          modalData={dashboardModalData}
+          modalData={usedAccruedHoursData}
         />
         <DashboardCardAndModal
           cardData={overtimeHours}
           cardDataSuffix={"/h"}
-          modalData={dashboardModalData}
+          modalData={overtimeHoursData}
         />
         <DashboardCardAndModal
           cardData={totalHours}
           cardDataSuffix={"/h"}
-          modalData={dashboardModalData}
+          modalData={totalHoursData}
         />
         <DashboardCardAndModal
           cardData={extraToolCompensation}
           cardDataSuffix={"kr"}
-          modalData={dashboardModalData}
+          modalData={extraToolCompensationData}
         />
         <DashboardCardAndModal
           cardData={extraTransportationCompensation}
           cardDataSuffix={"kr"}
-          modalData={dashboardModalData}
+          modalData={extraTransportationCompensationData}
         />
         <DashboardCardAndModal
           cardData={travelDistanceKM}
           cardDataSuffix={"km"}
-          modalData={dashboardModalData}
+          modalData={travelDistanceKMData}
         />
       </div>
     </div>
