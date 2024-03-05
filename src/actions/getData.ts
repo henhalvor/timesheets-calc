@@ -1,11 +1,12 @@
-"use server"
+"use server";
 
 import prisma from "@/lib/prisma";
 import { getUserId } from "@/lib/user";
 import { getAllUserTimesheets } from "@/lib/userImages";
 import { multiplyArrayElements } from "@/lib/utils";
+import { TimesheetType } from "@/types";
 
-export async function getDashboardData(year: number) {
+export async function getDashboardTimesheetsDataByYear(year: number) {
   try {
     const userId = await getUserId();
 
@@ -19,15 +20,29 @@ export async function getDashboardData(year: number) {
         extraToolCompensation: true,
         extraTransportationCompensation: true,
         travelDistanceKM: true,
-        uploadDate: true
+        uploadDate: true,
       },
     });
 
     const data = allData.filter((timesheet) => {
-      const timesheetYear = new Date(Number(BigInt(timesheet.uploadDate))).getFullYear();
+      const timesheetYear = new Date(
+        Number(BigInt(timesheet.uploadDate))
+      ).getFullYear();
       return timesheetYear === year;
     });
 
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getDashboardCardData(year: number) {
+  try {
+    const data = await getDashboardTimesheetsDataByYear(year)
+    if (!data) {
+      throw new Error("No data found");
+    };
 
     const regularHours = multiplyArrayElements(
       data.map((timesheet) => timesheet.regularHours)
@@ -70,5 +85,3 @@ export async function getDashboardData(year: number) {
     console.log(error);
   }
 }
-
-
