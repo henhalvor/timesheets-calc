@@ -37,7 +37,7 @@ type CardProps = {
 };
 
 type ModalProps = {
-  modalData: Number[] | null;
+  modalData: { [weekNumber: number]: number }[] | number[] | null;
 };
 
 type CardModalProps = CardProps & ModalProps;
@@ -59,8 +59,18 @@ function DashboardCard({ cardData, cardDataSuffix, cardName }: CardProps) {
 }
 
 function DashboardModalContent({ modalData }: ModalProps) {
-  if (!modalData) return;
-  modalData.push(1, 2, 3, 4, 5, 6, 7, 8, 8, 9);
+  if (!modalData) return null;
+  if (Array.isArray(modalData) && modalData.length === 1) {
+    return (
+      <p className="relative text-8xl m-auto">
+        {modalData[0].toString()}
+        <span className="absolute bottom-2 -right-6 text-xl font-light">
+          /h
+        </span>
+      </p>
+    );
+  }
+
   return (
     <div className="max-h-96 overflow-y-auto border-border border-solid  border-[1px] rounded-md">
       {" "}
@@ -77,14 +87,20 @@ function DashboardModalContent({ modalData }: ModalProps) {
           </tr>
         </thead>
         <tbody className=" divide-y divide-border">
-          {modalData.map((number, index) => (
-            <tr key={index}>
-              <td className="px-6 py-4 whitespace-nowrap">{index}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {number.toString()}
-              </td>
-            </tr>
-          ))}
+          {modalData.map((weekData, index) => {
+            const value = Object.values(weekData)[0];
+            if (value === 0 || value === undefined || value === null) {
+              return null; // Skip rendering the row if the value is 0, undefined, or null
+            }
+            return (
+              <tr key={index}>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {Object.keys(weekData)[0]}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">{value}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
@@ -100,6 +116,23 @@ export default function DashboardCardAndModal({
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
+  // const dummyData: { [weekNumber: number]: number }[] = [
+  //   { 1: 20 },
+  //   { 1: 15 },
+  //   { 1: 18 },
+  //   { 1: 18 },
+  //   { 1: 18 },
+  //   { 1: 18 },
+  //   { 1: 18 },
+  //   { 1: 18 },
+  //   { 1: 18 },
+  //   { 1: 18 },
+  //   { 1: 18 },
+  //   { 1: 18 },
+  //   { 1: 18 },
+  //   // Add more dummy data as needed
+  // ];
+
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
@@ -114,9 +147,9 @@ export default function DashboardCardAndModal({
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
+            <DialogTitle>Overview</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when youre done.
+              See the value to the corresponding week
             </DialogDescription>
           </DialogHeader>
           <DashboardModalContent modalData={modalData} />
@@ -129,20 +162,24 @@ export default function DashboardCardAndModal({
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <button>
-          <DashboardCard cardData={cardData} cardDataSuffix={cardDataSuffix} cardName={cardName} />
+          <DashboardCard
+            cardData={cardData}
+            cardDataSuffix={cardDataSuffix}
+            cardName={cardName}
+          />
         </button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>Edit profile</DrawerTitle>
+          <DrawerTitle>Overview</DrawerTitle>
           <DrawerDescription>
-            Make changes to your profile here. Click save when youre done.
+          See the value to the corresponding week
           </DrawerDescription>
         </DrawerHeader>
-        {/* content */}
+        <DashboardModalContent modalData={modalData} />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline">Close</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

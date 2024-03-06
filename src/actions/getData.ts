@@ -21,7 +21,7 @@ async function getDashboardTimesheetsDataByYear(year: number) {
         extraTransportationCompensation: true,
         travelDistanceKM: true,
         uploadDate: true,
-        weekNumber: true
+        weekNumber: true,
       },
     });
 
@@ -41,39 +41,63 @@ async function getDashboardTimesheetsDataByYear(year: number) {
 export async function getDashboardModalData(year: number) {
   try {
     const data = await getDashboardTimesheetsDataByYear(year);
-    if (!data) {
-      throw new Error("No data found");
+    if (!data || data.length < 1) {
+      return null;
     }
-    const regularHoursData = data.map((item) => {});
-    const accruedHoursData = data.map((item) => item.accruedHours);
-    const usedAccruedHoursData = data.map((item) => item.usedAccruedHours);
-    const overtimeHoursData = data.map((item) => item.overtimeHours);
-    const travelDistanceKMData = data.map((item) => item.travelDistanceKM);
-    const extraToolCompensationData = data.map(
-      (item) => item.extraToolCompensation
-    );
-    const extraTransportationCompensationData = data.map(
-      (item) => item.extraTransportationCompensation
-    );
+    const regularHoursData = data.map((item) => {
+      return {
+        [item.weekNumber]: item.regularHours,
+      };
+    });
+    const accruedHoursData = data.map((item) => {
+      return {
+        [item.weekNumber]: item.accruedHours,
+      };
+    });
+    const usedAccruedHoursData = data.map((item) => {
+      return {
+        [item.weekNumber]: item.usedAccruedHours,
+      };
+    });;
+    const overtimeHoursData = data.map((item) => {
+      return {
+        [item.weekNumber]: item.overtimeHours,
+      };
+    });
+    const travelDistanceKMData = data.map((item) => {
+      return {
+        [item.weekNumber]: item.travelDistanceKM,
+      };
+    });;
+    const extraToolCompensationData = data.map((item) => {
+      return {
+        [item.weekNumber]: item.extraToolCompensation,
+      };
+    });
+    const extraTransportationCompensationData = data.map((item) => {
+      return {
+        [item.weekNumber]: item.extraTransportationCompensation,
+      };
+    });
     const accruedHoursLeftData = [
-      accruedHoursData.reduce(
+      data.map((item) => item.accruedHours).reduce(
         (accumulator, currentValue) => accumulator + currentValue
       ) -
-        usedAccruedHoursData.reduce(
+      data.map((item) => item.usedAccruedHours).reduce(
           (accumulator, currentValue) => accumulator + currentValue
         ),
     ];
 
     const totalHoursData = [
-      regularHoursData.reduce(
+      data.map((item) => item.regularHours).reduce(
         (accumulator, currentValue) => accumulator + currentValue
       ) +
-        accruedHoursData.reduce(
+      data.map((item) => item.accruedHours).reduce(
           (accumulator, currentValue) => accumulator + currentValue
         ) +
-        overtimeHoursData.reduce(
+        data.map((item) => item.overtimeHours).reduce(
           (accumulator, currentValue) => accumulator + currentValue
-        ),
+        )
     ];
     return {
       regularHoursData,
@@ -94,7 +118,7 @@ export async function getDashboardCardData(year: number) {
   try {
     const data = await getDashboardTimesheetsDataByYear(year);
     if (!data) {
-      throw new Error("No data found");
+      return null;
     }
 
     const regularHours = multiplyArrayElements(

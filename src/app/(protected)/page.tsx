@@ -83,8 +83,28 @@ export default function Dashboard() {
     );
   }
 
+  const listedYears = getListedYears(10);
+
   if (!dashboardCardData || !dashboardModalData) {
-    return <div>No data</div>; // Render no data message if data is not available
+    return (
+      <div className="flex flex-col items-center">
+        <div className="flex justify-center mt-8 mb-4">
+        <Select value={selectedYear} onValueChange={setSelectedYear}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Year" />
+          </SelectTrigger>
+          <SelectContent>
+            {listedYears.map((year) => (
+              <SelectItem key={year} value={year.toString()}>
+                {year}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <p className="">No Data For This Year</p>
+      </div>
+    ); // Render no data message if data is not available
   }
 
   const {
@@ -109,7 +129,7 @@ export default function Dashboard() {
     extraTransportationCompensationData,
   } = dashboardModalData;
 
-  const listedYears = getListedYears(10);
+  
 
   return (
     <div>

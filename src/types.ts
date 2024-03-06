@@ -26,12 +26,12 @@ export type DashboardCardData = {
 };
 
 export type DashboardModalData = {
-  regularHoursData: number[];
+  regularHoursData: { [weekNumber: number]: number }[];
   accruedHoursLeftData: number[];
-  usedAccruedHoursData: number[];
-  overtimeHoursData: number[];
+  usedAccruedHoursData: { [weekNumber: number]: number }[];
+  overtimeHoursData: { [weekNumber: number]: number }[];
   totalHoursData: number[];
-  travelDistanceKMData: number[];
-  extraToolCompensationData: number[];
-  extraTransportationCompensationData: number[];
+  travelDistanceKMData: { [weekNumber: number]: number }[];
+  extraToolCompensationData: { [weekNumber: number]: number }[];
+  extraTransportationCompensationData: { [weekNumber: number]: number }[];
 };
