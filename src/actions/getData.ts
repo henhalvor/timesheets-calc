@@ -21,6 +21,7 @@ async function getDashboardTimesheetsDataByYear(year: number) {
         extraTransportationCompensation: true,
         travelDistanceKM: true,
         uploadDate: true,
+        weekNumber: true
       },
     });
 
@@ -43,7 +44,7 @@ export async function getDashboardModalData(year: number) {
     if (!data) {
       throw new Error("No data found");
     }
-    const regularHoursData = data.map((item) => item.regularHours);
+    const regularHoursData = data.map((item) => {});
     const accruedHoursData = data.map((item) => item.accruedHours);
     const usedAccruedHoursData = data.map((item) => item.usedAccruedHours);
     const overtimeHoursData = data.map((item) => item.overtimeHours);

@@ -33,19 +33,20 @@ import {
 type CardProps = {
   cardData: number;
   cardDataSuffix: string;
+  cardName: string;
 };
 
 type ModalProps = {
   modalData: Number[] | null;
-}
+};
 
 type CardModalProps = CardProps & ModalProps;
 
-function DashboardCard({ cardData, cardDataSuffix }: CardProps) {
+function DashboardCard({ cardData, cardDataSuffix, cardName }: CardProps) {
   return (
-    <Card className="relative flex flex-col  justify-center items-center w-[180px] h-[180px]">
+    <Card className="relative flex flex-col  justify-center items-center w-[180px] h-[180px] hover:scale-105">
       <CardDescription className="absolute top-2 left-auto right-auto">
-        Regular hours
+        {cardName}
       </CardDescription>
       <p className="relative text-5xl font-bold text-center">
         {cardData}
@@ -57,11 +58,43 @@ function DashboardCard({ cardData, cardDataSuffix }: CardProps) {
   );
 }
 
-function DashboardModalContent({ modalData }: ModalProps) {}
+function DashboardModalContent({ modalData }: ModalProps) {
+  if (!modalData) return;
+  modalData.push(1, 2, 3, 4, 5, 6, 7, 8, 8, 9);
+  return (
+    <div className="max-h-96 overflow-y-auto border-border border-solid  border-[1px] rounded-md">
+      {" "}
+      {/* Set maximum height and enable vertical scrolling */}
+      <table className="min-w-full divide-y divide-border ">
+        <thead className="">
+          <tr>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Week
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Hours
+            </th>
+          </tr>
+        </thead>
+        <tbody className=" divide-y divide-border">
+          {modalData.map((number, index) => (
+            <tr key={index}>
+              <td className="px-6 py-4 whitespace-nowrap">{index}</td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                {number.toString()}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 export default function DashboardCardAndModal({
   cardData,
   cardDataSuffix,
+  cardName,
   modalData,
 }: CardModalProps) {
   const [open, setOpen] = React.useState(false);
@@ -72,7 +105,11 @@ export default function DashboardCardAndModal({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <button>
-            <DashboardCard cardData={cardData} cardDataSuffix={cardDataSuffix} />
+            <DashboardCard
+              cardData={cardData}
+              cardDataSuffix={cardDataSuffix}
+              cardName={cardName}
+            />
           </button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
@@ -82,7 +119,7 @@ export default function DashboardCardAndModal({
               Make changes to your profile here. Click save when youre done.
             </DialogDescription>
           </DialogHeader>
-          {/* content */}
+          <DashboardModalContent modalData={modalData} />
         </DialogContent>
       </Dialog>
     );
@@ -92,7 +129,7 @@ export default function DashboardCardAndModal({
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <button>
-          <DashboardCard cardData={cardData} cardDataSuffix={cardDataSuffix}/>
+          <DashboardCard cardData={cardData} cardDataSuffix={cardDataSuffix} cardName={cardName} />
         </button>
       </DrawerTrigger>
       <DrawerContent>
