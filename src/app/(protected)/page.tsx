@@ -153,48 +153,56 @@ export default function Dashboard() {
           cardDataSuffix={"/h"}
           modalData={regularHoursData}
           cardName="Regular Hours"
+          year={selectedYear}
         />
         <DashboardCardAndModal
           cardData={accruedHoursLeft}
           cardDataSuffix={"/h"}
           modalData={accruedHoursLeftData}
           cardName="Accrued Hours Left"
+          year={selectedYear}
         />
         <DashboardCardAndModal
           cardData={usedAccruedHours}
           cardDataSuffix={"/h"}
           modalData={usedAccruedHoursData}
           cardName="Used Accrued Hours"
+          year={selectedYear}
         />
         <DashboardCardAndModal
           cardData={overtimeHours}
           cardDataSuffix={"/h"}
           modalData={overtimeHoursData}
           cardName="Overtime Hours"
+          year={selectedYear}
         />
         <DashboardCardAndModal
           cardData={totalHours}
           cardDataSuffix={"/h"}
           modalData={totalHoursData}
           cardName="Total Hours"
+          year={selectedYear}
         />
         <DashboardCardAndModal
           cardData={extraToolCompensation}
           cardDataSuffix={"kr"}
           modalData={extraToolCompensationData}
           cardName="Tool Compensation"
+          year={selectedYear}
         />
         <DashboardCardAndModal
           cardData={extraTransportationCompensation}
           cardDataSuffix={"kr"}
           modalData={extraTransportationCompensationData}
           cardName="Transport Compensation"
+          year={selectedYear}
         />
         <DashboardCardAndModal
           cardData={travelDistanceKM}
           cardDataSuffix={"km"}
           modalData={travelDistanceKMData}
           cardName="Total Travel"
+          year={selectedYear}
         />
       </div>
     </div>

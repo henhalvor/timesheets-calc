@@ -38,6 +38,7 @@ type CardProps = {
 
 type ModalProps = {
   modalData: { [weekNumber: number]: number }[] | number[] | null;
+  year: string;
 };
 
 type CardModalProps = CardProps & ModalProps;
@@ -58,7 +59,7 @@ function DashboardCard({ cardData, cardDataSuffix, cardName }: CardProps) {
   );
 }
 
-function DashboardModalContent({ modalData }: ModalProps) {
+function DashboardModalContent({ modalData, year }: ModalProps) {
   if (!modalData) return null;
   if (Array.isArray(modalData) && modalData.length === 1) {
     return (
@@ -112,6 +113,7 @@ export default function DashboardCardAndModal({
   cardDataSuffix,
   cardName,
   modalData,
+  year,
 }: CardModalProps) {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -147,12 +149,12 @@ export default function DashboardCardAndModal({
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Overview</DialogTitle>
+            <DialogTitle>Overview {year}</DialogTitle>
             <DialogDescription>
               See the value to the corresponding week
             </DialogDescription>
           </DialogHeader>
-          <DashboardModalContent modalData={modalData} />
+          <DashboardModalContent modalData={modalData} year={year} />
         </DialogContent>
       </Dialog>
     );
@@ -171,12 +173,12 @@ export default function DashboardCardAndModal({
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>Overview</DrawerTitle>
+          <DrawerTitle>Overview {year}</DrawerTitle>
           <DrawerDescription>
           See the value to the corresponding week
           </DrawerDescription>
         </DrawerHeader>
-        <DashboardModalContent modalData={modalData} />
+        <DashboardModalContent modalData={modalData} year={year} />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline">Close</Button>
