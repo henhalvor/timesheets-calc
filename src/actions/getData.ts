@@ -22,6 +22,7 @@ async function getDashboardTimesheetsDataByYear(year: number) {
         travelDistanceKM: true,
         uploadDate: true,
         weekNumber: true,
+        id: true,
       },
     });
 
@@ -47,57 +48,64 @@ export async function getDashboardModalData(year: number) {
     const regularHoursData = data.map((item) => {
       return {
         [item.weekNumber]: item.regularHours,
+        id: item.id,
       };
     });
     const accruedHoursData = data.map((item) => {
       return {
         [item.weekNumber]: item.accruedHours,
+        id: item.id,
       };
     });
     const usedAccruedHoursData = data.map((item) => {
       return {
         [item.weekNumber]: item.usedAccruedHours,
+        id: item.id,
       };
-    });;
+    });
     const overtimeHoursData = data.map((item) => {
       return {
         [item.weekNumber]: item.overtimeHours,
+        id: item.id,
       };
     });
     const travelDistanceKMData = data.map((item) => {
       return {
         [item.weekNumber]: item.travelDistanceKM,
+        id: item.id,
       };
-    });;
+    });
     const extraToolCompensationData = data.map((item) => {
       return {
         [item.weekNumber]: item.extraToolCompensation,
+        id: item.id,
       };
     });
     const extraTransportationCompensationData = data.map((item) => {
       return {
         [item.weekNumber]: item.extraTransportationCompensation,
+        id: item.id,
       };
     });
     const accruedHoursLeftData = [
-      data.map((item) => item.accruedHours).reduce(
-        (accumulator, currentValue) => accumulator + currentValue
-      ) -
-      data.map((item) => item.usedAccruedHours).reduce(
-          (accumulator, currentValue) => accumulator + currentValue
-        ),
+      data
+        .map((item) => item.accruedHours)
+        .reduce((accumulator, currentValue) => accumulator + currentValue) -
+        data
+          .map((item) => item.usedAccruedHours)
+          .reduce((accumulator, currentValue) => accumulator + currentValue),
     ];
 
     const totalHoursData = [
-      data.map((item) => item.regularHours).reduce(
-        (accumulator, currentValue) => accumulator + currentValue
-      ) +
-      data.map((item) => item.accruedHours).reduce(
-          (accumulator, currentValue) => accumulator + currentValue
-        ) +
-        data.map((item) => item.overtimeHours).reduce(
-          (accumulator, currentValue) => accumulator + currentValue
-        )
+      data
+        .map((item) => item.regularHours)
+        .reduce((accumulator, currentValue) => accumulator + currentValue) +
+        data
+          .map((item) => item.accruedHours)
+          .reduce((accumulator, currentValue) => accumulator + currentValue) +
+        data
+          .map((item) => item.overtimeHours)
+          .reduce((accumulator, currentValue) => accumulator + currentValue),
     ];
     return {
       regularHoursData,

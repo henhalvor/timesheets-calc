@@ -29,6 +29,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import Link from "next/link";
 
 type CardProps = {
   cardData: number;
@@ -37,7 +38,7 @@ type CardProps = {
 };
 
 type ModalProps = {
-  modalData: { [weekNumber: number]: number }[] | number[] | null;
+  modalData: { [weekNumber: number]: number; id: string }[] | number[] | null;
   year: string;
 };
 
@@ -90,15 +91,20 @@ function DashboardModalContent({ modalData, year }: ModalProps) {
         <tbody className=" divide-y divide-border">
           {modalData.map((weekData, index) => {
             const value = Object.values(weekData)[0];
+            const id = Object.values(weekData)[1];
             if (value === 0 || value === undefined || value === null) {
               return null; // Skip rendering the row if the value is 0, undefined, or null
             }
             return (
-              <tr key={index}>
+              <tr key={index} className="underline underline-offset-2">
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {Object.keys(weekData)[0]}
+                  <Link href={`/timesheets/${id}`}>
+                    {Object.keys(weekData)[0]}
+                  </Link>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">{value}</td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <Link href={`/timesheets/${id}`}>{value}</Link>
+                </td>
               </tr>
             );
           })}
@@ -175,7 +181,7 @@ export default function DashboardCardAndModal({
         <DrawerHeader className="text-left">
           <DrawerTitle>Overview {year}</DrawerTitle>
           <DrawerDescription>
-          See the value to the corresponding week
+            See the value to the corresponding week
           </DrawerDescription>
         </DrawerHeader>
         <DashboardModalContent modalData={modalData} year={year} />
