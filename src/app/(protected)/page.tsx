@@ -211,10 +211,10 @@ export default function Dashboard() {
 
 function CardSkeleton() {
   return (
-    <Card className="relative bg-muted opacity-60 flex flex-col justify-center items-center w-[180px] h-[180px]">
-      <CardDescription className="absolute top-auto bottom-auto left-auto right-auto">
+    <Card className="relative bg-muted opacity-50 flex flex-col justify-center items-center w-[180px] h-[180px]">
+      {/* <CardDescription className="absolute top-auto bottom-auto left-auto right-auto">
         Loading...
-      </CardDescription>
+      </CardDescription> */}
       {/* Additional skeleton content if needed */}
     </Card>
   );
