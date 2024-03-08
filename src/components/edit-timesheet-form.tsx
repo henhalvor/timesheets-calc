@@ -6,6 +6,7 @@ import { LuImagePlus } from "react-icons/lu";
 import { editTimesheet } from "@/actions/edit";
 import { getTimesheetById } from "@/lib/userImages";
 import FileInput from "./file-input";
+import FileInputNotRequired from "./ui/file-input-not-required";
 
 type Props = {
   id: string | null;
@@ -28,7 +29,7 @@ export default async function EditTimesheetForm({ id }: Props) {
       action={submitAction}
       className="flex flex-col max-w-[600px] gap-5 items-center border-solid border-border border-[1px] rounded-md p-4"
     >
-      <FileInput />
+      <FileInputNotRequired />
       <div className="flex flex-col md:flex-row md:flex-wrap md:justify-evenly items-center justify-center gap-2">
         <div className="flex flex-col gap-1">
           <label htmlFor="week-number" className="">
