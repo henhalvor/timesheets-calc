@@ -6,6 +6,64 @@ import prisma from "@/lib/prisma";
 import { getUserId } from "@/lib/user";
 import { redirect } from "next/navigation";
 
+async function optimizeImage(file: File): Promise<File> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      if (event.target) {
+        const image = new Image();
+        image.src = event.target.result as string;
+        image.onload = () => {
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+          if (!context) {
+            reject(new Error("Canvas context is null"));
+            return;
+          }
+          const maxWidth = 800; // Adjust the maximum width as needed
+          const maxHeight = 600; // Adjust the maximum height as needed
+          let width = image.width;
+          let height = image.height;
+
+          if (width > height) {
+            if (width > maxWidth) {
+              height *= maxWidth / width;
+              width = maxWidth;
+            }
+          } else {
+            if (height > maxHeight) {
+              width *= maxHeight / height;
+              height = maxHeight;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          context.drawImage(image, 0, 0, width, height);
+
+          canvas.toBlob((blob) => {
+            if (!blob) {
+              reject(new Error("Failed to create Blob"));
+              return;
+            }
+            const optimizedFile = new File([blob], file.name, {
+              type: "image/jpeg",
+              lastModified: Date.now(),
+            });
+            resolve(optimizedFile);
+          }, "image/jpeg", 0.9); // Adjust the quality (0.9 is 90% quality)
+        };
+        image.onerror = (error) => reject(error);
+      } else {
+        reject(new Error("Event target is null"));
+      }
+    };
+    reader.onerror = (error) => reject(error);
+    reader.readAsDataURL(file);
+  });
+}
+
+
 async function uploadTimesheetToDb(
   blob: PutBlobResult,
   formData: FormData
@@ -57,7 +115,8 @@ async function uploadTimesheetToDb(
 export async function uploadTimesheet(formData: FormData) {
   try {
     const imageFile = formData.get("image") as File;
-    const blob = await put(imageFile.name, imageFile, {
+    const optimizedImageFile = await optimizeImage(imageFile); // Optimize the image
+    const blob = await put(optimizedImageFile.name, optimizedImageFile, {
       access: "public",
     });
     uploadTimesheetToDb(blob, formData);
